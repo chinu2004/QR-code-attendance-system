@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+    <h1>Mark Attendance</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul style="color:green;">
+          {% for msg in messages %}
+            <li>{{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <h3>Scan QR Code</h3>
+    <div id="reader" style="width:300px;"></div>
+
+    <form id="attendanceForm" method="POST">
+        <input type="hidden" name="roll" id="rollInput">
+    </form>
+
+    <br><a href="/">Home</a>
+
+    <script>
+        let scanner = new Html5QrcodeScanner(
+            "reader", { fps: 10, qrbox: 250 });
+
+        function onScanSuccess(decodedText) {
+            console.log("Scanned:", decodedText);
+
+            // Fill hidden input
+            document.getElementById("rollInput").value = decodedText;
+
+            // Submit form via AJAX instead of refreshing page
+            fetch("/mark_attendance", {
+                method: "POST",
+                body: new FormData(document.getElementById("attendanceForm"))
+            }).then(res => {
+                alert("Attendance marked for: " + decodedText);
+            }).catch(err => {
+                console.error("Error:", err);
+            });
+
+            // ✅ Do NOT stop scanner, it keeps running
+        }
+
+        function onScanError(errorMessage) {
+            // ignore errors
+        }
+
+        scanner.render(onScanSuccess, onScanError);
+    </script>
+        <center><br><a href="/">Home</a></center> 
+</body>
+</html>

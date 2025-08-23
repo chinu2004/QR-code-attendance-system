@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete All Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+            width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #e60000;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input[type="password"],
+        input[type="text"] {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        input[type="password"]:focus,
+        input[type="text"]:focus {
+            border-color: #e60000;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            padding: 14px;
+            background: #e60000;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background: #cc0000;
+        }
+
+        .flash-messages {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            background:#0088ff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            background:#0073d7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚠️ Delete All Data</h1>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-messages">
+              {% for msg in messages %}
+                <p>{{ msg }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <label>Password:</label>
+            <input type="password" name="password" required autocomplete="new-password">
+
+            <label>Type <b>"DELETE"</b> to confirm:</label>
+            <input type="text" name="confirm_text" required>
+
+            <input type="submit" value="Delete All">
+        </form>
+
+    <a href="/" class="home-btn">🏠 Home</a>
+    </div>
+</body>
+</html>

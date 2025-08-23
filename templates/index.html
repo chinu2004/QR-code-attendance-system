@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Attendance System</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 750px;
+      max-width: 90%;
+      min-height: 520px;
+      animation: fadeIn 1s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      margin-bottom: 25px;
+      font-size: 32px;
+      color: #222;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    ul li {
+      margin: 15px 0;
+    }
+
+    a {
+      display: block;
+      padding: 18px;
+      background: #76bbf7;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      background: #00c6ff;
+      transform: scale(1.07);
+      box-shadow: 0 6px 20px rgba(0, 198, 255, 0.4);
+    }
+    .qr-title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 48px;
+    color: #04026b;          /* stylish blue */
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3); /* subtle shadow */
+    margin-top: 20px;
+    transition: color 0.3s, transform 0.3s;
+    cursor: default;
+}
+
+.qr-title:hover {
+    color: #1c00a7;           /* changes color on hover */
+    transform: scale(1.05);   /* slightly zooms on hover */
+}
+
+    footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+<img src="{{ url_for('static', filename='image1.jpg') }}" 
+     alt="QR Code Scanner" 
+     style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);border-radius: 15px; width:600px;margin-right: 40px; height:600px;"
+     >
+ 
+
+  <div class="container">
+    <div>
+      <h1 class="qr-title">📋 QR Attendance System</h1>
+      <ul>
+        <li><a href="/add_user">➕ Add Student / Generate QR</a></li>
+        <li><a href="/scan">📷 Scan QR & Mark Attendance</a></li>
+        <li><a href="/download_csv">⬇️ Download Attendance CSV</a></li>
+        <li><a href="/delete_all" style="background:#fa8686;">🗑️ Delete All QR Codes & Data</a></li>
+      </ul>
+    </div>
+    <footer>© 2025 QR Attendance | Built with ❤️</footer>
+  </div>
+</body>
+</html>
