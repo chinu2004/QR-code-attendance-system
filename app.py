@@ -1,5 +1,6 @@
 import os
 import csv
+import pytz
 import qrcode
 import random
 import string
@@ -171,7 +172,7 @@ def mark_attendance():
             "Dept": student["Dept"],
             "Year": student["Year"],
             "Section": student["Section"],
-            "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            "Timestamp": datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%Y-%m-%d %H:%M:%S")
         })
 
     return jsonify({"status": "success", "message": f"Attendance marked for {student['Name']}"})
